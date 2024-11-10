@@ -1,0 +1,4 @@
+﻿  parent.cpp
+C:\Users\T470\source\repos\lab1.1\lab1.1\parent.cpp(86,101): warning C4267: аргумент: преобразование из "size_t" в "DWORD"; возможна потеря данных
+C:\Users\T470\source\repos\lab1.1\lab1.1\parent.cpp(36,10): warning C4101: fileName: неиспользованная локальная переменная
+  lab1.1.vcxproj -> C:\Users\T470\source\repos\lab1.1\x64\Debug\lab1.1.exe
