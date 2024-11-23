@@ -7,17 +7,10 @@
 
 LPWSTR ConvertToWideString(const char* str) {
     if (str == nullptr) return nullptr;
-
-    // Определяем, сколько wide символов нам нужно
     int size_needed = MultiByteToWideChar(CP_UTF8, 0, str, -1, NULL, 0);
-
-    // Выделяем память для строкового массива
     LPWSTR wideString = new wchar_t[size_needed];
-
-    // Конвертируем строку
     MultiByteToWideChar(CP_UTF8, 0, str, -1, wideString, size_needed);
-
-    return wideString; // Возвращаем указатель на wide string
+    return wideString; // Г‚Г®Г§ГўГ°Г Г№Г ГҐГ¬ ГіГЄГ Г§Г ГІГҐГ«Гј Г­Г  wide string
 }
 
 void my_printf(const char* format, ...) {
