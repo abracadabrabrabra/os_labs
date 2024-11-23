@@ -76,17 +76,14 @@ int main(int argc, char* argv[]) {
     ConnectNamedPipe(hPipe1, NULL);
 
     ConnectNamedPipe(hPipe2, NULL);
-    //my_printf("4\n");
     WriteFile(hPipe1, buffer, bytesRead + 1, &bytesWritten, NULL);
-    //my_printf("5\n");
-    char response[BUFFER_SIZE];
+    char response[BUFFER_SIZE] = { '\0' };
     ReadFile(hPipe2, response, BUFFER_SIZE, &bytesRead, NULL);
-    //my_printf("6\n");
-    if (strcmp(response, "DIVIDE_BY_ZERO") == 0) {
-        WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), "Division by zero detected. Exiting...\n", strlen("Division by zero detected. Exiting...\n"), &bytesWritten, NULL);
+    if (!strcmp(response, "DIVIDE_BY_ZERO")) {
+         my_printf("Zero division error");
+         return ERROR_DEV_ZERO;
     }
 
-    //my_printf("3\n");
 
     CloseHandle(hPipe1);
     CloseHandle(hPipe2);
