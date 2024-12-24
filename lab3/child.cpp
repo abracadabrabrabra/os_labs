@@ -8,19 +8,19 @@
 #define BUFFER_SIZE 1024
 
 enum ret_type_t {
-    SUCCESS,    //Successful end
-    ERROR_ARGS_COUNT,    //Wrong args number
-    ERROR_CREATE_PIPE,  //Failed to create a new pipeline
-    ERROR_CREATE_CHILD_PROCESS, //Failed to create a child process
-    ERROR_READ, //Failed to read from pipe
-    ERROR_DEV_ZERO, //Devision by zero detected
-    ERROR_FULL, //Overflow
-    ERROR_OPEN_FILE,    //Error with file opening
-    ERROR_CLOSE_FILE,   //Error with closing file
-    ERROR_FILE_WRITE,   //Error with file writing
-    ERROR_HANDLER_INHERITED, //Error handler reading
-    ERROR_PIPE_WRITE,   //Failed to write smth in the pipe
-    ERROR_HEAP,         //Failed to malloc
+    SUCCESS,    
+    ERROR_ARGS_COUNT,    
+    ERROR_CREATE_PIPE,  
+    ERROR_CREATE_CHILD_PROCESS, 
+    ERROR_READ, 
+    ERROR_DEV_ZERO, 
+    ERROR_FULL, 
+    ERROR_OPEN_FILE,    
+    ERROR_CLOSE_FILE,   
+    ERROR_FILE_WRITE,   
+    ERROR_HANDLER_INHERITED, 
+    ERROR_PIPE_WRITE,   
+    ERROR_HEAP,         
     ERR_FMAP,
     ERR_SEM,
     ERR_MAPVIEW
