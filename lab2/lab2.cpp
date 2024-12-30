@@ -1,4 +1,4 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #define BUF_SIZE 1000
 #define MAX_THREADS 100000
 #include "my_stdio.h"
@@ -31,17 +31,6 @@ typedef struct {
     unsigned long long count;
 } ThreadData;
 
-/*void sum_array_part(void* p) {
-    ThreadData* tp = (ThreadData*)p;
-    unsigned long long cur_sum = 0;
-    for (size_t i = 0; i < tp->count; i++)
-        cur_sum += tp->numbers[i];
-    pthread_mutex_lock(&lock);
-    sum += cur_sum;
-    cnt += tp->count;
-    pthread_mutex_unlock(&lock);
-}*/
-
 DWORD WINAPI sum_array_part(LPVOID lpParam) {
     ThreadData* data = (ThreadData*)lpParam;
     unsigned long long local_sum = 0;
@@ -58,6 +47,8 @@ DWORD WINAPI sum_array_part(LPVOID lpParam) {
 
     return 0;
 }
+
+
 
 int main(int argc, char* argv[]) {
 
@@ -120,9 +111,10 @@ int main(int argc, char* argv[]) {
     //my_printf("cnt = %l, nt = %l, st = %l\n", cnt_nums, NUM_THREADS, size_thread);
     clock_t start = clock();
 
-    for (i = 0; i < NUM_THREADS; i += size_thread) {
-        thread_data[i].numbers = &(nums[i]);
-        thread_data[i].count = (i + size_thread <= cnt_nums && i < NUM_THREADS - 1) ? size_thread : cnt_nums - i;
+    for (i = 0; i < NUM_THREADS; i++) {
+        thread_data[i].numbers = &(nums[i * size_thread]);
+        thread_data[i].count = (i * (size_thread + 1) <= cnt_nums && i < NUM_THREADS - 1) ? size_thread : cnt_nums - i * size_thread;
+        //my_printf("ind = %l, count = %l\n", i, thread_data[i].count);
         threads[i] = CreateThread(NULL, 0, sum_array_part, (LPVOID)&thread_data[i], 0, NULL);
         if (!threads[i]) {
             free(nums);
