@@ -11,7 +11,7 @@
 #include <windows.h>
 
 #define N_BLOCKS 10
-#define NUM_LISTS 11          // Количество списков (от 0 до 10)
+#define NUM_LISTS 11          // ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г±ГЇГЁГ±ГЄГ®Гў (Г®ГІ 0 Г¤Г® 10)
 
 
 typedef struct Block {
