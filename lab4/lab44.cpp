@@ -1,4 +1,4 @@
-﻿#include <windows.h>
+#include <windows.h>
 #include <time.h>
 //#include <iostream>
 #include "C:/Users/T470/source/repos/DLL_FREEBLOCKS/funcs.h"  
@@ -203,27 +203,28 @@ int main(int argc, char* argv[]) {
             Allocator* a = create(data, MAX_SIZE);
             p_blocks(a);
 
-            clock_t start = clock();
-            char* pc[10];
-            for (int i = 0; i < 10; i++) {
-                pc[i] = (char*)alloc(a, 10);
+            int sz[13] = { 10, 20, 100, 150, 1024, 80, 35, 32, 55, 2048, 5000, 136, 25 };
+            char* pc[13];
+            for (int i = 0; i < 13; i++) {
+                clock_t start = clock();
+                pc[i] = (char*)alloc(a, sz[i]);
+                clock_t end = clock();
                 if (!pc[i]) {
                     my_print("Allocation error");
                 }
+                my_print("Time = %k\n", (double)(end - start) / CLOCKS_PER_SEC);
                 p_blocks(a);
             }
 
-            clock_t end = clock();
-            my_print("Allocation time: %k seconds\n", (double)(end - start) / CLOCKS_PER_SEC);
-            start = clock();
+            my_print("\n");
 
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 13; i++) {
+                clock_t start = clock();
                 free_func(a, (void*)pc[i]);
+                clock_t end = clock();
+                my_print("Time = %k\n", (double)(end - start) / CLOCKS_PER_SEC);
                 p_blocks(a);
             }
-
-            end = clock();
-            my_print("Free time: %k seconds\n", (double)(end - start) / CLOCKS_PER_SEC);
 
             destroy(a);
             VirtualFree(data, 0, MEM_RELEASE);
@@ -247,27 +248,29 @@ int main(int argc, char* argv[]) {
         Allocator* a = create(data, MAX_SIZE);
         p_blocks(a);
 
-        clock_t start = clock();
-        char* pc[10];
-        for (int i = 0; i < 10; i++) {
-            pc[i] = (char*)alloc(a, 10);
+        
+        int sz[13] = { 10, 20, 100, 150, 1024, 80, 35, 32, 55, 2048, 5000, 136, 25 };
+        char* pc[13];
+        for (int i = 0; i < 13; i++) {
+            clock_t start = clock();
+            pc[i] = (char*)alloc(a, sz[i]);
+            clock_t end = clock();
             if (!pc[i]) {
                 my_print("Allocation error");
             }
+            my_print("Time = %k\n", (double)(end - start) / CLOCKS_PER_SEC);
             p_blocks(a);
         }
 
-        clock_t end = clock();
-        my_print("Allocation time: %k seconds\n", (double)(end - start) / CLOCKS_PER_SEC);
-        start = clock();
+        my_print("\n");
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 13; i++) {
+            clock_t start = clock();
             free_func(a, (void*)pc[i]);
+            clock_t end = clock();
+            my_print("Time = %k\n", (double)(end - start) / CLOCKS_PER_SEC);
             p_blocks(a);
         }
-
-        end = clock();
-        my_print("Free time: %k seconds\n", (double)(end - start) / CLOCKS_PER_SEC);
 
         destroy(a);
         VirtualFree(data, 0, MEM_RELEASE);
