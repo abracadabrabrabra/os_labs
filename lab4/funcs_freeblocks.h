@@ -5,7 +5,7 @@
 #endif
 
 
-#define MAX_SIZE 1024
+#define MAX_SIZE 10000
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>
